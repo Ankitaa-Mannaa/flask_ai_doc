@@ -19,16 +19,17 @@ def store_chunks(text, doc_id):
         chunk_doc = {
             'doc_id': ObjectId(doc_id),
             'text': chunk_text,
-            'embedding': embedding  # Should be JSON serializable list
+            'embedding': embedding 
         }
-        # Ensure no _id field is present
+        
+        
         chunk_doc.pop('_id', None)
         chunks.append(chunk_doc)
 
     if chunks:
         mongo.db.chunks.insert_many(chunks)
 
-    return chunks  # Important: Return the list for user.py to reuse
+    return chunks 
 
 
 def search_chunks(query):
@@ -36,6 +37,7 @@ def search_chunks(query):
     Embeds the query, computes cosine similarity with all chunks in MongoDB,
     returns top 5 most similar.
     """
+    
     query_embedding = embed_text(query)
 
     chunks = list(mongo.db.chunks.find({}))
