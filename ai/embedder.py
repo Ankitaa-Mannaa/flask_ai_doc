@@ -1,4 +1,5 @@
 from sentence_transformers import SentenceTransformer
+<<<<<<< HEAD
 import os
 
 
@@ -15,3 +16,10 @@ embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 def embed_text(text):
     return embedder.encode(text).tolist()
+=======
+
+embedder = SentenceTransformer('all-MiniLM-L6-v2')
+
+def embed_text(text):
+    return embedder.encode(text).tolist()
+>>>>>>> 0379ebb5a8dcd5c57e5a25378c09d33f164c7f05

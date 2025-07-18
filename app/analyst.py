@@ -6,7 +6,10 @@ from .llama_client import generate_answer
 
 analyst_bp = Blueprint('analyst', __name__)
 
+<<<<<<< HEAD
 # search route
+=======
+>>>>>>> 0379ebb5a8dcd5c57e5a25378c09d33f164c7f05
 @analyst_bp.route('/search', methods=['GET'])
 @jwt_required()
 @role_required('analyst')
@@ -19,7 +22,10 @@ def search():
     return jsonify({'matches': matches}), 200
 
 
+<<<<<<< HEAD
 # ask route
+=======
+>>>>>>> 0379ebb5a8dcd5c57e5a25378c09d33f164c7f05
 @analyst_bp.route('/ask', methods=['GET'])
 @jwt_required()
 @role_required('analyst')
