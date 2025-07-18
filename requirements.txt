@@ -1,0 +1,11 @@
+Flask
+Flask-JWT-Extended
+Flask-SQLAlchemy
+Flask-Migrate
+bcrypt
+PyPDF2 
+pdfminer.six
+python-docx
+chromadb
+torch
+flask-pymongo

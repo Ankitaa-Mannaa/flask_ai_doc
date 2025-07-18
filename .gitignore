@@ -1,0 +1,17 @@
+# Ignore Python virtual environment
+venv/
+
+# Ignore Python cache files
+__pycache__/
+
+# Ignore local environment variables
+.env
+
+chroma_db/ 
+
+hf_cache/
+
+curl.txt
+
+promote.py
+
