@@ -6,7 +6,6 @@ __pycache__/
 
 # Ignore local environment variables
 .env
-<<<<<<< HEAD
 
 chroma_db/ 
 
@@ -16,5 +15,3 @@ curl.txt
 
 promote.py
 
-=======
->>>>>>> 0379ebb5a8dcd5c57e5a25378c09d33f164c7f05
