@@ -11,3 +11,4 @@ sentence-transformers
 torch
 requests
 python-dotenv
+gunicorn
