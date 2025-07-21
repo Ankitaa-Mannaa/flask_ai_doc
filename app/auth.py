@@ -5,6 +5,7 @@ from functools import wraps
 import uuid
 from chromadb import EphemeralClient
 from .chroma_service import users_collection
+from werkzeug.security import generate_password_hash, check_password_hash
 
 chroma_client = EphemeralClient()
 
@@ -45,7 +46,8 @@ def role_required(required_role):
 @auth_bp.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
-    hashed = hashpw(data['password'].encode(), gensalt()).decode()
+    # hashed = hashpw(data['password'].encode(), gensalt()).decode() #previous method
+    hashed = generate_password_hash(data['password'])
     all_users = users_collection.get()
     role = 'admin' if not all_users['ids'] else 'user'  # First user is Admin
 
@@ -69,7 +71,10 @@ def login():
     data = request.get_json()
     all_users = users_collection.get()
     for user_id, meta in zip(all_users["ids"], all_users["metadatas"]):
-        if meta["email"] == data["email"] and checkpw(data["password"].encode('utf-8'), meta["password_hash"].encode('utf-8')):
+        # if meta["email"] == data["email"] and checkpw(data["password"].encode('utf-8'), meta["password_hash"].encode('utf-8')):                # previous method
+
+        if meta["email"] == data["email"] and check_password_hash(meta["password_hash"], data["password"]):
+
             token = create_access_token(identity=user_id)
             return jsonify({'access_token': token}), 200
 
