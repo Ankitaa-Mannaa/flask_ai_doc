@@ -5,7 +5,7 @@ import chromadb
 from chromadb.config import Settings, DEFAULT_TENANT, DEFAULT_DATABASE
 
 chroma_client = chromadb.PersistentClient(
-    path="./chroma_db",
+    path="/tmp/chroma_db",
     settings=Settings(),
     tenant=DEFAULT_TENANT,
     database=DEFAULT_DATABASE

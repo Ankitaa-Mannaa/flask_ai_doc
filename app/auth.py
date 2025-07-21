@@ -8,7 +8,7 @@ import uuid
 
 # Setup Chroma client
 chroma_client = PersistentClient(
-    path="./chroma_db",
+    path="/tmp/chroma_db",
     settings=Settings(),
     tenant=DEFAULT_TENANT,
     database=DEFAULT_DATABASE
