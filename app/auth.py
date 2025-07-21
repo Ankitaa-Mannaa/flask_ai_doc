@@ -4,10 +4,10 @@ from bcrypt import hashpw, gensalt, checkpw
 from functools import wraps
 import uuid
 from chromadb import EphemeralClient
+from .chroma_service import users_collection
 
 chroma_client = EphemeralClient()
 
-users_collection = chroma_client.get_or_create_collection(name="users")
 auth_bp = Blueprint('auth', __name__)
 
 # Store user in Chroma

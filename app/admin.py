@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
 from .auth import role_required
-from .chroma_service import logs_collection
+from .chroma_service import logs_collection, users_collection
 import uuid
 from datetime import datetime
 import chromadb
@@ -10,10 +10,6 @@ from chromadb.config import Settings
 from chromadb import EphemeralClient
 
 chroma_client = EphemeralClient()
-
-
-users_collection = chroma_client.get_or_create_collection(name="users")
-
 
 admin_bp = Blueprint('admin', __name__)
 

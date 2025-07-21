@@ -2,14 +2,10 @@ from chromadb import Client
 from datetime import datetime, timezone
 import uuid
 import chromadb
+from .chroma_service import users_collection, documents_collection, logs_collection
 from chromadb import EphemeralClient
 
 chroma_client = EphemeralClient()
-
-# Collections
-users_collection = chroma_client.get_or_create_collection(name="users")
-documents_collection = chroma_client.get_or_create_collection(name="documents")
-logs_collection = chroma_client.get_or_create_collection(name="logs")
 
 # ---------- USER ----------
 def add_user(name, email, password_hash, role='user'):

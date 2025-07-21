@@ -6,9 +6,10 @@ from chromadb import EphemeralClient
 
 chroma_client = EphemeralClient()
 
-
 # Create a collection
-collection = chroma_client.get_or_create_collection(name="document_chunks")
+chunk_collection = chroma_client.get_or_create_collection(name="document_chunks")
+users_collection = chroma_client.get_or_create_collection(name="users")
+documents_collection = chroma_client.get_or_create_collection(name="documents")
 logs_collection = chroma_client.get_or_create_collection(name="logs")
 
 __all__ = ['store_chunks', 'search_chunks', 'logs_collection']
@@ -29,7 +30,7 @@ def store_chunks(text, doc_id):
         documents.append(chunk_text)
 
     # Add to collection
-    collection.add(
+    chunk_collection.add(
         ids=ids,
         embeddings=embeddings,
         metadatas=metadatas,
@@ -42,7 +43,7 @@ def store_chunks(text, doc_id):
 def search_chunks(query):
     query_embedding = embed_text(query)
 
-    results = collection.query(
+    results = chunk_collection.query(
         query_embeddings=[query_embedding],
         n_results=5
     )
