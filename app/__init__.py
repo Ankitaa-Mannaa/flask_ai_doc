@@ -24,4 +24,8 @@ def create_app():
     app.register_blueprint(admin_bp)
     app.register_blueprint(analyst_bp)
 
+    @app.route("/")
+    def health():
+        return "API is running!", 200
+
     return app

@@ -1,14 +1,11 @@
 Flask
 Flask-JWT-Extended
-Flask-SQLAlchemy
 Flask-Migrate
 bcrypt
 PyPDF2
 pdfminer.six
 python-docx
 chromadb
-sentence-transformers
-torch
 requests
 python-dotenv
 gunicorn>=20.1.0
