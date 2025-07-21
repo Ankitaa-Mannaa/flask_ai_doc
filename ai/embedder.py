@@ -1,17 +1,15 @@
-from sentence_transformers import SentenceTransformer
-import os
+import requests
 
-
-# Force Hugging Face model cache to a local folder
-os.environ["TRANSFORMERS_CACHE"] = "./hf_cache"
-os.environ["HF_HOME"] = "./hf_cache"
-os.environ["HF_DATASETS_CACHE"] = "./hf_cache"
-os.environ["HF_MODULES_CACHE"] = "./hf_cache"
-os.environ["HF_METRICS_CACHE"] = "./hf_cache"
-
-
-# Safe model load
-embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+# Your Hugging Face Space endpoint
+HF_SPACE_URL = "https://Anki27-anki-embedder.hf.space/embed"
 
 def embed_text(text):
-    return embedder.encode(text).tolist()
+    response = requests.post(
+        HF_SPACE_URL,
+        json={"text": text},
+        headers={"Content-Type": "application/json"}
+    )
+    if response.status_code == 200:
+        return response.json()["embedding"]
+    else:
+        raise Exception(f"Embedding request failed: {response.status_code} - {response.text}")
