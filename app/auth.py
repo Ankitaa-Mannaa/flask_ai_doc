@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, abort
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, verify_jwt_in_request
-from bcrypt import hashpw, gensalt, checkpw
+# from bcrypt import hashpw, gensalt, checkpw  #previous method
 from functools import wraps
 import uuid
 from chromadb import EphemeralClient
