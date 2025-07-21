@@ -2,14 +2,10 @@ from chromadb import Client
 from ai.embedder import embed_text
 import numpy as np
 import chromadb
-from chromadb.config import Settings, DEFAULT_TENANT, DEFAULT_DATABASE
+from chromadb import EphemeralClient
 
-chroma_client = chromadb.PersistentClient(
-    path="/tmp/chroma_db",
-    settings=Settings(),
-    tenant=DEFAULT_TENANT,
-    database=DEFAULT_DATABASE
-)
+chroma_client = EphemeralClient()
+
 
 # Create a collection
 collection = chroma_client.get_or_create_collection(name="document_chunks")

@@ -1,18 +1,11 @@
 from flask import Blueprint, request, jsonify, abort
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, verify_jwt_in_request
-from chromadb import PersistentClient
-from chromadb.config import Settings, DEFAULT_TENANT, DEFAULT_DATABASE
 from bcrypt import hashpw, gensalt, checkpw
 from functools import wraps
 import uuid
+from chromadb import EphemeralClient
 
-# Setup Chroma client
-chroma_client = PersistentClient(
-    path="/tmp/chroma_db",
-    settings=Settings(),
-    tenant=DEFAULT_TENANT,
-    database=DEFAULT_DATABASE
-)
+chroma_client = EphemeralClient()
 
 users_collection = chroma_client.get_or_create_collection(name="users")
 auth_bp = Blueprint('auth', __name__)
