@@ -6,10 +6,8 @@ import uuid
 from datetime import datetime
 import chromadb
 from chromadb.config import Settings
+from .chroma_service import chroma_client
 
-from chromadb import EphemeralClient
-
-chroma_client = EphemeralClient()
 
 admin_bp = Blueprint('admin', __name__)
 
